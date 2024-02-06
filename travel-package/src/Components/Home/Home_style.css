@@ -1,0 +1,164 @@
+@font-face {
+    font-family: nimbus;
+    src: url(./font/NimbusRomNo9L-RegIta.otf);
+}
+
+
+
+.ad-div {
+    /* background-color: yellow; */
+    background: url(./images/saint_basils_cathedral.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ad-div h1 {
+    font-size: 40px;
+    color: white;
+}
+
+.ad-div :nth-child(2) {
+    font-size: 40px;
+    color: white;
+    font-family: nimbus;
+}
+
+.ad-div p {
+    width: 50%;
+    text-align: center;
+    color: white;
+}
+
+.ad-div button {
+    background-color: rgba(6, 195, 195, 0.704);
+    color: white;
+    width: 150px;
+    height: 45px;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+}
+
+.description-div {
+    /* background-color: chartreuse; */
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 10px  inset rgba(225, 224, 224, 0.318);
+}
+
+.description-div h1 {
+    color: rgb(125, 125, 125);
+    font-size: 40px;
+}
+
+.description-div p {
+    background: linear-gradient(to right, rgba(193, 166, 166, 0.011), rgba(241, 240, 240, 0.961), rgb(241, 240, 240, 0.961), rgba(83, 83, 143, 0.016));
+    width: 50%;
+    text-align: center;
+}
+
+
+
+/* Categories
+________________________________________________________*/
+
+.trip-categories-div {
+    /* background-color: chocolate; */
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.adventure-div {
+    /* background-color: wheat; */
+    width: 40%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.adventure-div h1 {
+    /* background-color: crimson; */
+    color: grey;
+}
+
+.adventure-image-div {
+    /* background-color: aqua; */
+    height: 90%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3px;
+}
+
+.adventure-image-div :nth-child(1) {
+    width: 200px;
+}
+
+.adventure-image-div :nth-child(2) {
+    width: 350px;
+    /* grid-column: 1;
+    grid-row: ; */
+}
+
+.adventure-image-div :nth-child(3) {
+    width: 200px;
+}
+
+.adventure-image-div :nth-child(4) {
+    width: 350px;
+}
+
+
+
+/* ------------------------------- */
+
+.luxury-div {
+    /* background-color: antiquewhite; */
+    width: 40%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+   
+}
+
+.luxury-div h1 {
+    /* background-color: crimson; */
+    color: grey;
+}
+
+.luxury-image-div {
+    /* background-color: aqua; */
+    height: 90%;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 3px;
+    justify-content: space-around;
+}
+
+.luxury-image-div :nth-child(1) {
+    width: 200px;
+}
+.luxury-image-div :nth-child(2) {
+    width: 300px;
+}
+.luxury-image-div :nth-child(3) {
+    width: 250px;
+}
+.luxury-image-div :nth-child(4) {
+    width: 300px;
+}
