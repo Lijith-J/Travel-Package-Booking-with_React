@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import './Home_style.css'
 import { Main_Context } from '../Context/Context_File'
+import Footer from '../Footer/Footer'
 
 
 const Home = () => {
@@ -50,6 +51,7 @@ const Home = () => {
 
       </div>
 
+      <Footer/>
 
     </>
   )

@@ -10,12 +10,11 @@ import hidden from './images/hidden.png'
 
 
 const LogIn = () => {
-    const { travelDatasAll } = useContext(Main_Context)
+    const { travelDatasAll,inputValue, setInputValue } = useContext(Main_Context)
     // console.log("Got Data in Log In page", travelDatasAll)
 
     const [showPassword, setShowPassword] = useState(false);
 
-    const { inputValue, setInputValue } = useContext(Main_Context)
 
     const locate = useNavigate()
 
@@ -55,7 +54,6 @@ const LogIn = () => {
                 localStorage.setItem("clientName", inputValue.username)
             }
         }
-
     }
 
 

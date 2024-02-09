@@ -1,31 +1,144 @@
-.myOrders-page-headline-div{
-    background-color: violet;
+.myOrders-page-headline-div {
+
+    background:linear-gradient(black,rgba(0, 0, 0, 0.392)), url(./images/the_great_pyramid_of_giza_egyptian_al_haram_nazlet_el_semman_al_giza_desert_giza_governorate_egypt_4k_hd_travel-2560x1440.jpg);
     width: 100%;
-    height: 180px;
+    height: 40px;
     display: flex;
-    justify-content: center;
     align-items: end;
 }
 
-.clearHistory-button-div{
-    /* background-color: yellow; */
-    width: 95%;
+.myOrders-page-headline-div h1 {
+    /* background-color: aqua; */
+    margin-left: 200px;
+
+}
+
+.top-design-div {
+    background:linear-gradient(rgb(0, 0, 0),rgba(0, 0, 0, 0.534)), url(./images/the_great_pyramid_of_giza_egyptian_al_haram_nazlet_el_semman_al_giza_desert_giza_governorate_egypt_4k_hd_travel-2560x1440.jpg);
+    background-position: center;
+    /* background-size: cover; */
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 200px;
+    /* top: 0;
+    position: -webkit-sticky;
+    position: sticky; */
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    margin-top: -21px;
+
+    
+}
+.top-design-div h1{
+    /* background-color: white; */
+    color: white;
+    width: 30%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+
+    margin-top: 100px;
+/* box-shadow: 0px 5px 5px 1px rgba(182, 171, 171, 0.39); */
+}
+
+.clearHistory-button-div {
+    /* background: url(./images/the_great_pyramid_of_giza_egyptian_al_haram_nazlet_el_semman_al_giza_desert_giza_governorate_egypt_4k_hd_travel-2560x1440.jpg); */
+    
+    width: 100%;
     height: 50px;
     display: flex;
     justify-content: end;
     align-content: center;
-}
-.clearHistory-button-div h4{
-   color: red;
-   cursor: pointer;
+    /* position: sticky; */
 }
 
+.clearHistory-button-div h4 {
+    color: rgb(248, 110, 110);
+    cursor: pointer;
+    margin-right: 100px;
+}
+
+.mybooking-contents-div {
+    /* background-color: blue; */
+    width: 100%;
+    height: 800px;
+    
+}
+
+.Bookings-mainDiv {
+    /* background-color: yellowgreen; */
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.Bookings-mainDiv {
+    text-align: center;
+}
+
+.myBookings-div {
+    /* background-color: violet; */
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 25px;
+    gap: 20px;
+    overflow-x: hidden;
+}
+
+.myBookings-div::-webkit-scrollbar {
+    width: 0;
+}
+
+.myBookings-item-div {
+    background-color: #463C46;
+    width: 89%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    color: white;
+
+    box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.062);
+}
+
+.myBookings-item-image-div {
+    /* background-color: tomato; */
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    align-items: center;
+}
+
+.myBookings-item-image-div img {
+    width: 150px;
+}
+
+.myBookings-place-details-div {
+    /* background-color: burlywood; */
+    width: 50%;
+    height: 100%;
+    text-align: center;
+}
+
+.myBookings-place-details-div :nth-child(3) {
+    color: green;
+}
 
 
-
-
-
-.order-status-div{
+.order-status-div {
     display: flex;
     justify-content: space-evenly;
     align-items: center;

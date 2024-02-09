@@ -18,7 +18,7 @@ const Navbar = () => {
   // console.log('placedatass', placeDatas);
 
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [navbarBackground, setNavbarBackground] = useState('transparent');
+  const [navbarBackground, setNavbarBackground] = useState("transperant");
 
 
 
@@ -62,9 +62,9 @@ const Navbar = () => {
 
       // Change background color after scrolling down
       if (position > 100) {
-        setNavbarBackground('white'); // Change to whatever color you want
+        setNavbarBackground("white"); // Change to whatever color you want
       } else {
-        setNavbarBackground('transparent');
+        setNavbarBackground("transparent");
       }
     };
 
@@ -80,7 +80,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='nav-main' style={{background:navbarBackground}}>
+      <div className='nav-main' style={{ background: navbarBackground, color: "black" , transition:"0.5s ease-in-out"}}>
         <div className="logo-div">
           <img className='logo' alt="" />
         </div>

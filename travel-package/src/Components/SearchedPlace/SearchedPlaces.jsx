@@ -3,6 +3,7 @@ import './SearchedPlace_style.css'
 import { Main_Context } from '../Context/Context_File'
 import closeBtn from './images/close (1).png'
 import Invoice from '../Invoice/Invoice'
+import Footer from '../Footer/Footer'
 
 // import offer1 from './images/offer1.webp'
 
@@ -79,11 +80,11 @@ const SearchedPlaces = () => {
 
   return (
     <>
-      
-  
+
+
       <div className='page-content-div'>
         <div className='search-Items-main'>
-          <h1>BOOK YOUR TRIP</h1>
+          <h2>BOOK YOUR TRIP</h2>
 
           <div className='place-items-div'>
 
@@ -139,6 +140,8 @@ const SearchedPlaces = () => {
         BillModal && <Invoice />
       } */}
 
+
+     
 
     </>
   )

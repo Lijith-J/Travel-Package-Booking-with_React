@@ -33,20 +33,28 @@ const Context_File = ({ children }) => {
     const [findItem, setFindItem] = useState([])
 
 
+    // Take input Values to Add items to API
+    const [addItemInputValues, setAddItemInputValues] = useState({
+        id: Date.now(),
+        name: '',
+        place: '',
+        image: '',
+        rate: '',
+        triptype: ''
+    });
 
-    // console.log('findplace ------', findPlace)
+
+    console.log(' ------', travelDatasAll)
 
 
 
-    
 
-    //   Fetching Datas from API
+    //   Fetching Datas from API to Get
     const getData = async () => {
+        
         try {
-
             const dataUrl = await axios.get("http://localhost:4004/traveldata")
             setTravelDatasAll(dataUrl.data)
-
         }
         catch {
             console.error("Data Didn't get from API");
@@ -57,7 +65,12 @@ const Context_File = ({ children }) => {
         getData()
     }, [])
 
-    // console.log("all Data", travelDatasAll);
+    // ________________________________________________________________________________
+
+
+    
+
+
 
     return (
         <Main_Context.Provider value={{
@@ -69,7 +82,9 @@ const Context_File = ({ children }) => {
             phoneNo, setPhoneNo,
             MyBookings, setMyBookings,
             orderStatus, SetOrderStatus,
-            findItem, setFindItem
+            findItem, setFindItem,
+            addItemInputValues, setAddItemInputValues,
+    
         }}>
 
             {children}

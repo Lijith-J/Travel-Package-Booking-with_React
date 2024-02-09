@@ -41,7 +41,7 @@
     border-radius: 10px;
 }
 
-.search-Items-main h1 {
+.search-Items-main h2 {
     text-align: center;
     background-color: rgba(98, 98, 98, 0.382);
     width: 35%;
@@ -72,7 +72,8 @@
 }
 
 .placeItem-div {
-    background-color: white;
+    /* background-color: white; */
+    backdrop-filter: blur(10px);
     width: 90%;
     height: 30%;
     display: flex;
@@ -100,7 +101,7 @@
     width: 50%;
     height: 100%;
     text-align: center;
-    /* color: white; */
+    color: white;
 }
 
 .place-details-div :nth-child(3) {

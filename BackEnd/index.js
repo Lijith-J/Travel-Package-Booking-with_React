@@ -81,15 +81,6 @@ const placeDatas = [
     },
     {
         id: 8,
-        name: 'Veligandu Island Beach',
-        image: "",
-        place: "Maldives",
-        rate: 25000,
-        triptype: 'Luxury',
-        status: "Waiting"
-    },
-    {
-        id: 9,
         name: 'Hulhumale',
         image: "https://gca.org/wp-content/uploads/2022/02/iStock-538010535.jpg",
         place: "Maldives",
@@ -97,15 +88,19 @@ const placeDatas = [
         triptype: 'Luxury',
         status: "Waiting"
     },
-    // {
-    //     id:8,
-    //     name:'Adaaran Select Hudhuranfushi',
-    //     image:"",
-    //     place:"Maldives",
-    //     rate:19000,
-    //     triptype:'Luxury'
-    // },
+    {
+        id: 9,
+        name: 'Veligandu Island Beach',
+        image: "",
+        place: "Maldives",
+        rate: 25000,
+        triptype: 'Luxury',
+        status: "Waiting"
+    },
+   
 ]
+
+
 
 const userDatas = [
 
@@ -127,6 +122,7 @@ const userDatas = [
         password: "appu",
         userType: "client"
     },
+    
 ]
 
 
@@ -134,14 +130,15 @@ travelApp.get("/traveldata", (req, res) => {
     res.send({ placeDatas: placeDatas, userDatas: userDatas });
 })
 
-travelApp.post("/LoginData", (req, res) => {
+travelApp.post("/addPlaceItems", (req, res) => {
+    const inputData = req.body;
 
-    const inptData = req.body;
+    placeDatas.push(inputData)
 
-    console.log("Request Recieved -", inptData);
+    console.log("Request Recieved -", inputData);
     res.send("Post Request success")
-
 })
+
 
 let port = 4004
 

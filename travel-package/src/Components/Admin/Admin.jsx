@@ -1,11 +1,16 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Admin_styles.css'
 import { Main_Context } from '../Context/Context_File'
+import axios from 'axios'
 
 
 const Admin = () => {
-  const { TripBookings, setBookings, MyBookings, SetOrderStatus, setFindItem } = useContext(Main_Context)
+  const { TripBookings, setBookings, MyBookings, orderStatus, SetOrderStatus, setFindItem, addItemInputValues, setAddItemInputValues } = useContext(Main_Context)
   // console.log("liiii", TripBookings)
+
+  const [addItemModal, setAddItemModal] = useState(false)
+
+
 
 
   const acceptBooking = (item, index) => {
@@ -15,14 +20,6 @@ const Admin = () => {
     if (findItem) {
       setFindItem(findItem)
       SetOrderStatus("Accepted")
-
-      const removeItem = () => {
-        const updateTripBookings = [...TripBookings]
-        updateTripBookings.splice(index, 1)
-        setBookings(updateTripBookings)
-      }
-
-      removeItem()
 
     }
   }
@@ -35,15 +32,39 @@ const Admin = () => {
       setFindItem(findItem)
       SetOrderStatus("Declined")
 
-      const removeItem = () => {
-        const updateTripBookings = [...TripBookings]
-        updateTripBookings.splice(index, 1)
-        setBookings(updateTripBookings)
-      }
-      removeItem()
+
     }
 
   }
+
+  // const removeItem = () => {
+  //   const updateTripBookings = [...TripBookings]
+  //   updateTripBookings.splice(index, 1)
+  //   setBookings(updateTripBookings)
+  // }
+  // removeItem()
+
+
+  // Adding Items from input
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setAddItemInputValues((prev) => ({ ...prev, [name]: value }));
+  };
+
+
+  // Fetch Post Data function
+
+  const postAddItemData = async () => {
+    try {
+      const postURL = await axios.post('http://localhost:4004/addPlaceItems', addItemInputValues)
+      const postResponse = postURL.data
+      console.log(postResponse);
+    }
+    catch {
+      console.log('Post Data Error')
+    }
+  }
+
 
 
   return (
@@ -70,8 +91,16 @@ const Admin = () => {
                   <h4>{item.triptype}</h4>
                 </div>
                 <div className='admin-placeitem-button-div'>
-                  <button onClick={() => acceptBooking(item, index)}>Accept</button>
-                  <button onClick={() => declineBooking(item, index)}>Decline</button>
+                  {/* {
+                    orderStatus === "Accepted" ? <span>Accept</span>
+                      :
+                      orderStatus === "Declined" ? <span>Declined</span>
+                        :
+                        <> */}
+                          <button onClick={() => acceptBooking(item, index)}>Accept</button>
+                          <button onClick={() => declineBooking(item, index)}>Decline</button>
+                        {/* </>
+                  } */}
                 </div>
               </div>
             ))}
@@ -82,10 +111,26 @@ const Admin = () => {
         <div className='site-access-div'>
           <div className='acccess-items-div'>
 
-            <h4>Add items</h4>
+            <h4 onClick={() => setAddItemModal(true)}>Add items</h4>
             <h4>Add Offers</h4>
-            <h4>Handle Users</h4>
+
           </div>
+          {
+            addItemModal &&
+            <div className='addItem-modal'>
+              <input type="text" placeholder='Destination' name='name' value={addItemInputValues.name} onChange={handleChange} />
+              <input type="text" placeholder='Place' name='place' value={addItemInputValues.place} onChange={handleChange} />
+              <input type="text" placeholder='Image Link' name='image' value={addItemInputValues.image} onChange={handleChange} />
+              <input type="number" placeholder='Rate' name='rate' value={addItemInputValues.rate} onChange={handleChange} />
+              <input type="text" placeholder='Triptype' name='triptype' value={addItemInputValues.triptype} onChange={handleChange} />
+
+              <div className='addItem-button-div'>
+                <button onClick={postAddItemData}>Add</button>
+                <button onClick={() => setAddItemModal(false)}>close</button>
+              </div>
+
+            </div>
+          }
         </div>
 
       </div>

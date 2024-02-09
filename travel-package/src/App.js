@@ -10,6 +10,8 @@ import Invoice from './Components/Invoice/Invoice';
 import MyBookings from './Components/MyBookings/MyBookings';
 import Footer from './Components/Footer/Footer';
 
+//   00510003808198
+
 function App() {
   return (
 
@@ -23,10 +25,11 @@ function App() {
           <Route path='/seachplace' element={<SearchedPlaces />} />
           <Route path='/invoice' element={<Invoice />} />
           <Route path='/mybookings' element={<MyBookings />} />
+          
 
         <Route path='/' element={<Footer />} />
         </Route>
-
+ 
       </Routes>
     </BrowserRouter>
 
