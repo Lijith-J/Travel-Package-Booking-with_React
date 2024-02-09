@@ -4,10 +4,27 @@
 }
 
 
+.homePage-backDesign {
+    background: linear-gradient(rgba(0, 0, 0, 0), black), url(./images/russia_kremlin_red_square_winter_moscow_kremlin_hd_travel-1920x1080.jpg) center/cover no-repeat;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+}
 
+.backImage {
+    position: fixed;
+}
+
+.homePage-AllContent-div {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+/* ________________________________________________________________________________ */
 .ad-div {
     /* background-color: yellow; */
-    background: url(./images/saint_basils_cathedral.jpg);
+    /* background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.199)), url(./images/saint_basils_cathedral.jpg); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -26,7 +43,7 @@
 
 .ad-div :nth-child(2) {
     font-size: 40px;
-    color: white;
+    color: rgb(203, 203, 203);
     font-family: nimbus;
 }
 
@@ -47,23 +64,26 @@
 }
 
 .description-div {
-    /* background-color: chartreuse; */
+    /* background-color: white; */
     width: 100%;
     height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-bottom: 10px  inset rgba(225, 224, 224, 0.318);
+    /* border-top: 10px inset rgba(225, 224, 224, 0.318);
+    border-bottom: 10px inset rgba(225, 224, 224, 0.318); */
 }
 
 .description-div h1 {
-    color: rgb(125, 125, 125);
+    /* color: rgb(125, 125, 125); */
+    color: white;
     font-size: 40px;
 }
 
 .description-div p {
-    background: linear-gradient(to right, rgba(193, 166, 166, 0.011), rgba(241, 240, 240, 0.961), rgb(241, 240, 240, 0.961), rgba(83, 83, 143, 0.016));
+    /* background: linear-gradient(to right, rgba(193, 166, 166, 0.011), rgba(241, 240, 240, 0.961), rgb(241, 240, 240, 0.961), rgba(83, 83, 143, 0.016)); */
+    color: white;
     width: 50%;
     text-align: center;
 }
@@ -74,12 +94,13 @@
 ________________________________________________________*/
 
 .trip-categories-div {
-    /* background-color: chocolate; */
+    background-color: white;
     width: 100%;
     height: 600px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    border-top: 10px inset rgba(86, 84, 84, 0.298)
 }
 
 .adventure-div {
@@ -133,7 +154,7 @@ ________________________________________________________*/
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-   
+
 }
 
 .luxury-div h1 {
@@ -153,12 +174,91 @@ ________________________________________________________*/
 .luxury-image-div :nth-child(1) {
     width: 200px;
 }
+
 .luxury-image-div :nth-child(2) {
     width: 300px;
 }
+
 .luxury-image-div :nth-child(3) {
     width: 250px;
 }
+
 .luxury-image-div :nth-child(4) {
     width: 300px;
+}
+
+/* ______________________________________________________________________________ */
+
+.downloadApp-main-div {
+    /* background-color: yellow; */
+    width: 100%;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.download-div {
+    background-color: white;
+    width: 72%;
+    height: 70%;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.download-text-div {
+    /* background-color: yellow; */
+    width: 58%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.download-text-div img{
+    width: 50px;
+}
+.download-text-div h1{
+    animation: zoom 0.9s infinite ease-in-out;
+}
+
+@keyframes zoom {
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2);
+    }
+    100%{
+        transform: scale();
+    }
+}
+
+
+
+.appStore-div {
+    /* background-color: violet; */
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.appStore-div img {
+    width: 150px;
+}
+
+.QR-div {
+    width: 22%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.QR-div img{
+    width: 120px;
 }

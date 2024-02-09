@@ -37,13 +37,6 @@ const Admin = () => {
 
   }
 
-  // const removeItem = () => {
-  //   const updateTripBookings = [...TripBookings]
-  //   updateTripBookings.splice(index, 1)
-  //   setBookings(updateTripBookings)
-  // }
-  // removeItem()
-
 
   // Adding Items from input
   const handleChange = (e) => {

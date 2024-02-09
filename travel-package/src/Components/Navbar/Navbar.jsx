@@ -19,6 +19,7 @@ const Navbar = () => {
 
   const [scrollPosition, setScrollPosition] = useState(0);
   const [navbarBackground, setNavbarBackground] = useState("transperant");
+  const [navbarFont, setNavbarFont] = useState("white");
 
 
 
@@ -63,8 +64,10 @@ const Navbar = () => {
       // Change background color after scrolling down
       if (position > 100) {
         setNavbarBackground("white"); // Change to whatever color you want
+        setNavbarFont("black")
       } else {
         setNavbarBackground("transparent");
+        setNavbarFont("white")
       }
     };
 
@@ -80,7 +83,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='nav-main' style={{ background: navbarBackground, color: "black" , transition:"0.5s ease-in-out"}}>
+      <div className='nav-main' style={{ background: navbarBackground,  transition:"0.5s ease-in-out"}}>
         <div className="logo-div">
           <img className='logo' alt="" />
         </div>
@@ -93,11 +96,11 @@ const Navbar = () => {
           </form>
         </div>
 
-        <div className='page-navigations-div'>
-          <Link to={'/home'} className='nav-links'>Home</Link>
-          <Link to={'/admin'} className='nav-links'>Admin</Link>
-          <Link to={'/mybookings'} className='nav-links'>My Bookings</Link>
-          <Link to={'/'} className='nav-links'>Log In</Link>
+        <div className='page-navigations-div' >
+          <Link to={'/home'} style={{color: navbarFont}} className='nav-links'>Home</Link>
+          <Link to={'/admin'} style={{color: navbarFont}} className='nav-links'>Admin</Link>
+          <Link to={'/mybookings'} style={{color: navbarFont}} className='nav-links'>My Bookings</Link>
+          <Link to={'/'} style={{color: navbarFont}} className='nav-links'>Log In</Link>
         </div>
 
 
