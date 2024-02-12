@@ -22,15 +22,9 @@ const Context_File = ({ children }) => {
     // Invoice Bitll Modal
     const [BillModal, setBillModal] = useState(false)
 
-    // My Orders Array
-    const [MyBookings, setMyBookings] = useState([])
 
     // MyOrder Status
-    const [orderStatus, SetOrderStatus] = useState('')
-
-
-    // a state to set findItem ,from admin and myBooking arrays
-    const [findItem, setFindItem] = useState([])
+    const [orderStatus, SetOrderStatus] = useState('Waiting')
 
 
     // Take input Values to Add items to API
@@ -40,11 +34,13 @@ const Context_File = ({ children }) => {
         place: '',
         image: '',
         rate: '',
-        triptype: ''
+        triptype: '',
+        status: "Waiting",
+
     });
 
 
-    console.log(' ------', travelDatasAll)
+    // console.log(' ------', travelDatasAll)
 
 
 
@@ -80,9 +76,7 @@ const Context_File = ({ children }) => {
             BillModal, setBillModal,
             inputValue, setInputValue,
             phoneNo, setPhoneNo,
-            MyBookings, setMyBookings,
             orderStatus, SetOrderStatus,
-            findItem, setFindItem,
             addItemInputValues, setAddItemInputValues,
     
         }}>

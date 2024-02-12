@@ -1,5 +1,20 @@
 
+.to-topPage-div{
+    background-color: rgb(62, 62, 62);
+    width: 100%;
+    height: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: white;
+   cursor: pointer;
+}
+.to-topPage-div:hover{
+    background-color: rgb(78, 78, 78);
+}
 
+
+/* _________________________________________________________ */
 .footer-main-div{
     background-color: rgb(31, 29, 29);
     width: 100%;

@@ -5,7 +5,7 @@
 
 
 .homePage-backDesign {
-    background: linear-gradient(rgba(0, 0, 0, 0), black), url(./images/russia_kremlin_red_square_winter_moscow_kremlin_hd_travel-1920x1080.jpg) center/cover no-repeat;
+    background: linear-gradient(rgba(88, 88, 88, 0), black), url(./images/russia_kremlin_red_square_winter_moscow_kremlin_hd_travel-1920x1080.jpg) center/cover no-repeat;
     width: 100%;
     height: 100vh;
     position: absolute;

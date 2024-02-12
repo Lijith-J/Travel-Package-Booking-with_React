@@ -92,7 +92,7 @@
     align-items: center;
 }
 
-.admin-placeitem-button-div :nth-child(1) {
+.accept-button {
     background-color: #516e48ad;
     width: 60%;
     height: 40%;
@@ -101,11 +101,11 @@
     color: white;
 }
 
-.admin-placeitem-button-div :nth-child(1):active {
+.accept-button:active {
     border: 1px solid black;
 }
 
-.admin-placeitem-button-div :nth-child(2) {
+.decline-button {
     background-color: #c8b18eaf;
     width: 60%;
     height: 40%;
@@ -114,7 +114,7 @@
     color: white;
 }
 
-.admin-placeitem-button-div :nth-child(2):active {
+.decline-button:active {
     border: 1px solid black;
 }
 

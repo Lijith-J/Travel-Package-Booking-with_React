@@ -44,7 +44,7 @@ const Navbar = () => {
       alert("Please Enter Destination")
     }
     else if (!searchItem) {
-      setInputValue(" Enter Correctly!!!!")
+      setInputValue("Enter Correctly !!!!")
     }
     else if (searchItem) {
       setFindPlace(searchItem)

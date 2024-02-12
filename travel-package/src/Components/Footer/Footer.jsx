@@ -6,8 +6,19 @@ import instagramIcon from './image/instagram.png'
 import twitterIcon from './image/twitter.png'
 
 const Footer = () => {
+
+  const scrollToTop=()=>{
+    window.scrollTo({
+      top:0,
+      behavior:'smooth'
+    })
+  }
+
   return (
     <>
+    <div className='to-topPage-div' onClick={scrollToTop}>
+      Back To Top
+    </div>
       <div className='footer-main-div'>
         <div className='footer-description-div'>
           <h3>Who we Are ?</h3>

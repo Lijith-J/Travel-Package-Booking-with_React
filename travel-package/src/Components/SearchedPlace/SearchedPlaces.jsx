@@ -14,8 +14,7 @@ const SearchedPlaces = () => {
     setBookings,
     BillModal, setBillModal,
     phoneNo, setPhoneNo,
-    MyBookings,
-    setMyBookings } = useContext(Main_Context)
+  } = useContext(Main_Context)
 
   const [phoneNoModal, setPhoneNoModal] = useState(false)
 
@@ -24,8 +23,8 @@ const SearchedPlaces = () => {
   //the item will add to an array, when click submitItem  function
 
 
-  console.log("trippppp ----", TripBookings);
-  console.log("myy booking ----", MyBookings)
+  // console.log("trippppp ----", TripBookings);
+  // console.log("myy booking ----", MyBookings)
 
   const bookItem = (item) => {
     setSelectItem(item)
@@ -37,11 +36,11 @@ const SearchedPlaces = () => {
   const submitItem = () => {
     if (selectItem) {
       setBookings((prev) => [...prev, selectItem])
-      setMyBookings((prev) => [...prev, selectItem])
+      // setMyBookings((prev) => [...prev, selectItem])
 
     }
     setSelectItem(null)
-    console.log("bookings -- ", TripBookings);
+    // console.log("bookings -- ", TripBookings);
 
     const closeModal = () => {
       setPhoneNoModal(false)
@@ -141,8 +140,8 @@ const SearchedPlaces = () => {
       } */}
 
 
-     
 
+      <Footer />
     </>
   )
 }

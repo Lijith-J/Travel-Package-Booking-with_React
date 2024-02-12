@@ -5,37 +5,38 @@ import axios from 'axios'
 
 
 const Admin = () => {
-  const { TripBookings, setBookings, MyBookings, orderStatus, SetOrderStatus, setFindItem, addItemInputValues, setAddItemInputValues } = useContext(Main_Context)
+  const { TripBookings, setBookings, addItemInputValues, setAddItemInputValues } = useContext(Main_Context)
   // console.log("liiii", TripBookings)
 
   const [addItemModal, setAddItemModal] = useState(false)
 
 
+  const acceptBooking = ( itemIndex) => {
 
+    setBookings(prevBookings => {
+      return prevBookings.map((booking, index) => {
+        if (index === itemIndex) {
+          return { ...booking, status: "Accepted" };
+        }
+        return booking;
+      });
+    });
 
-  const acceptBooking = (item, index) => {
-    const tripItem = item
-    const findItem = MyBookings.find((bookingItem) => bookingItem.id === tripItem.id)
+  };
 
-    if (findItem) {
-      setFindItem(findItem)
-      SetOrderStatus("Accepted")
+  const declineBooking = (itemIndex) => {
 
-    }
-  }
+    setBookings(prevBookings => {
+      return prevBookings.map((booking, index) => {
+        if (index === itemIndex) {
+          return { ...booking, status: "Declined" };
+        }
+        return booking;
+      });
+    });
 
-  const declineBooking = (item, index) => {
-    const tripItem = item
-    const findItem = MyBookings.find((bookingItem) => bookingItem.id === tripItem.id)
+  };
 
-    if (findItem) {
-      setFindItem(findItem)
-      SetOrderStatus("Declined")
-
-
-    }
-
-  }
 
 
   // Adding Items from input
@@ -73,7 +74,7 @@ const Admin = () => {
 
           <div className='orders-div'>
             {TripBookings.map((item, index) => (
-              <div key={item.id} className='admin-placeItem-div'>
+              <div key={index} className='admin-placeItem-div'>
                 <div className='admin-placeitem-image-div'>
                   <img src={item.image} alt="" />
                 </div>
@@ -84,16 +85,16 @@ const Admin = () => {
                   <h4>{item.triptype}</h4>
                 </div>
                 <div className='admin-placeitem-button-div'>
-                  {/* {
-                    orderStatus === "Accepted" ? <span>Accept</span>
-                      :
-                      orderStatus === "Declined" ? <span>Declined</span>
-                        :
-                        <> */}
-                          <button onClick={() => acceptBooking(item, index)}>Accept</button>
-                          <button onClick={() => declineBooking(item, index)}>Decline</button>
-                        {/* </>
-                  } */}
+                  {item.status === "Waiting" ? (
+                    <>
+                      <button className='accept-button' onClick={() => acceptBooking(item.id, index)}>Accept</button>
+                      <button className='decline-button' onClick={() => declineBooking(index)}>Decline</button>
+                    </>
+                  ) : (
+                    <span style={item.status === "Accepted" ? { color: "green" } :
+                      item.status === "Declined" ? { color: "red" } :
+                        { color: "yellow" }}>{item.status}</span>
+                  )}
                 </div>
               </div>
             ))}

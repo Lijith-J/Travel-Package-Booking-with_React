@@ -6,11 +6,9 @@ import Footer from '../Footer/Footer'
 
 const MyBookings = () => {
 
-    const { orderStatus, MyBookings, setMyBookings, findItem } = useContext(Main_Context)
+    const {  TripBookings } = useContext(Main_Context)
 
-    const clearHistory = () => {
-        setMyBookings([])
-    }
+   
 
     return (
         <>
@@ -20,23 +18,18 @@ const MyBookings = () => {
             </div>
 
             <div className='top-design-div'>
-            <h1>MY BOOKINGS</h1>
-            </div>
-
-           
-            <div className='clearHistory-button-div'>
-                <h4 onClick={clearHistory}>Clear all</h4>
+                <h1>MY BOOKINGS</h1>
             </div>
 
             <div className='mybooking-contents-div'>
 
 
                 <div className='Bookings-mainDiv'>
-        
+
                     <div className='myBookings-div'>
 
                         {
-                            MyBookings.map((item) => (
+                            TripBookings.map((item) => (
                                 <div key={item.id} className='myBookings-item-div'>
                                     <div className='myBookings-item-image-div'>
                                         <img src={item.image} alt="" />
@@ -47,24 +40,21 @@ const MyBookings = () => {
                                         <h3>₹ {item.rate}</h3>
                                         <h4>{item.triptype}</h4>
                                     </div>
+
                                     <div className='order-status-div'>
 
-                                        {findItem.id === item.id && orderStatus === "Accepted" ? <h6 style={{ color: "green" }}>{orderStatus}</h6>
-                                            :
-                                            findItem.id === item.id && orderStatus === "Declined"
-                                                ?
-                                                <h6 style={{ color: "red" }}>{orderStatus}</h6>
-                                                :
-                                                <h6 style={{ color: "yellow" }}>{item.status}</h6>}
+                                     <span style={item.status==="Accepted"?{color:"green"}:
+                                      item.status === "Declined" ? {color:"red"} : {color:"yellow"}}>{item.status}</span>
+
                                     </div>
                                 </div>
                             ))
                         }
                     </div>
                 </div>
-            </div>
+            </div >
 
-            <Footer/>
+            <Footer />
         </>
     )
 }
