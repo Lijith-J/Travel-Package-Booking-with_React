@@ -11,8 +11,8 @@ const SearchedPlaces = () => {
 
   const { findPlace,
     TripBookings,
-    setBookings,
-    BillModal, setBillModal,
+    setTripBookings,
+    setBillModal,
     phoneNo, setPhoneNo,
   } = useContext(Main_Context)
 
@@ -35,7 +35,7 @@ const SearchedPlaces = () => {
 
   const submitItem = () => {
     if (selectItem) {
-      setBookings((prev) => [...prev, selectItem])
+      setTripBookings((prev) => [...prev, selectItem])
       // setMyBookings((prev) => [...prev, selectItem])
 
     }
@@ -48,12 +48,13 @@ const SearchedPlaces = () => {
     closeModal()
 
     openBillModal()
+
   }
 
   const cancelItem = (index) => {
     const updatedBookings = [...TripBookings]
     updatedBookings.splice(index, 1)
-    setBookings(updatedBookings)
+    setTripBookings(updatedBookings)
   }
 
   const closeModal = () => {
@@ -134,14 +135,9 @@ const SearchedPlaces = () => {
         )
       }
 
-      {/* Invoice bill Modal */}
-      {/* {
-        BillModal && <Invoice />
-      } */}
-
-
 
       <Footer />
+
     </>
   )
 }

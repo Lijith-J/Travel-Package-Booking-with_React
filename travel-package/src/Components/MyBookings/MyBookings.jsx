@@ -4,26 +4,26 @@ import './MyBookings_style.css'
 import { Main_Context } from '../Context/Context_File'
 import Footer from '../Footer/Footer'
 
+import pdfIcon from './images/pdf.png'
+import Invoice from '../Invoice/Invoice'
+
 const MyBookings = () => {
 
-    const {  TripBookings } = useContext(Main_Context)
+    const { TripBookings,  BillDetails, setBillDetails,BillModal, setBillModal, } = useContext(Main_Context)
 
-   
+    const getBill= (item)=>{
+        setBillDetails(item)
+        // console.log("billlllll",BillDetails);
+        setBillModal(true)
+    }
 
     return (
         <>
-            <div className='myOrders-page-headline-div'>
-                {/* <h1>MY ORDERS</h1> */}
-
-            </div>
-
-            <div className='top-design-div'>
-                <h1>MY BOOKINGS</h1>
+            <div className='booking-headline-div'>
+                <h2>MY BOOKINGS</h2>
             </div>
 
             <div className='mybooking-contents-div'>
-
-
                 <div className='Bookings-mainDiv'>
 
                     <div className='myBookings-div'>
@@ -43,8 +43,14 @@ const MyBookings = () => {
 
                                     <div className='order-status-div'>
 
-                                     <span style={item.status==="Accepted"?{color:"green"}:
-                                      item.status === "Declined" ? {color:"red"} : {color:"yellow"}}>{item.status}</span>
+                                        <span style={item.status === "Accepted" ? { color: "green" } :
+                                            item.status === "Declined" ? { color: "red" } : { color: "yellow" }}>{item.status}
+                                        </span>
+                                        {
+                                            item.status === "Accepted" ?
+                                                <img onClick={()=>getBill(item)} className='pdfIcon' src={pdfIcon} alt="" />
+                                                : null
+                                        }
 
                                     </div>
                                 </div>
@@ -53,6 +59,13 @@ const MyBookings = () => {
                     </div>
                 </div>
             </div >
+
+
+      {/* Invoice bill Modal */}
+      {
+        BillModal && <Invoice />
+      }
+
 
             <Footer />
         </>

@@ -21,15 +21,13 @@ function App() {
         <Route index element={<LogIn />} />
         <Route path='/' element={<Navbar />} >
           <Route path='/home' element={<Home />} />
-          <Route path='/admin' element={<Admin />} />
           <Route path='/seachplace' element={<SearchedPlaces />} />
           <Route path='/invoice' element={<Invoice />} />
           <Route path='/mybookings' element={<MyBookings />} />
-          
-
-        <Route path='/' element={<Footer />} />
+          <Route path='/' element={<Footer />} />
         </Route>
- 
+          <Route path='/admin' element={<Admin />} />
+
       </Routes>
     </BrowserRouter>
 

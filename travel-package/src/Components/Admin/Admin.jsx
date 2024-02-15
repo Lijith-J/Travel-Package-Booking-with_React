@@ -1,19 +1,23 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Admin_styles.css'
 import { Main_Context } from '../Context/Context_File'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add'
+import DeleteIcon from '@mui/icons-material/Delete'
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const Admin = () => {
-  const { TripBookings, setBookings, addItemInputValues, setAddItemInputValues } = useContext(Main_Context)
+  const { TripBookings, setTripBookings, addItemInputValues, setAddItemInputValues } = useContext(Main_Context)
   // console.log("liiii", TripBookings)
 
   const [addItemModal, setAddItemModal] = useState(false)
 
 
-  const acceptBooking = ( itemIndex) => {
-
-    setBookings(prevBookings => {
+  const acceptBooking = (itemIndex) => {
+    setTripBookings(prevBookings => {
       return prevBookings.map((booking, index) => {
         if (index === itemIndex) {
           return { ...booking, status: "Accepted" };
@@ -26,7 +30,7 @@ const Admin = () => {
 
   const declineBooking = (itemIndex) => {
 
-    setBookings(prevBookings => {
+    setTripBookings(prevBookings => {
       return prevBookings.map((booking, index) => {
         if (index === itemIndex) {
           return { ...booking, status: "Declined" };
@@ -48,15 +52,17 @@ const Admin = () => {
 
   // Fetch Post Data function
 
-  const postAddItemData = async () => {
-    try {
-      const postURL = await axios.post('http://localhost:4004/addPlaceItems', addItemInputValues)
-      const postResponse = postURL.data
-      console.log(postResponse);
-    }
-    catch {
-      console.log('Post Data Error')
-    }
+  const postAddItemData = async (e) => {
+    
+      try {
+        const postURL = await axios.post('http://localhost:4004/addPlaceItems', addItemInputValues)
+        const postResponse = postURL.data
+        console.log(postResponse);
+      }
+      catch {
+        console.log('Post Data Error')
+      }
+    
   }
 
 
@@ -64,11 +70,32 @@ const Admin = () => {
   return (
     <>
 
-      {/* <div className='admin-headline'>
-        <h1>Bookings</h1>
-      </div> */}
+      <div className='admin-headline'>
+        <h2>Admin Dashboard</h2>
+        <Link to={'/'}><Button variant='outlined' endIcon={<ExitToAppIcon />}>Logout</Button></Link>
+      </div>
+
+
 
       <div className='admin-content-div'>
+
+
+        <div className='site-access-div'>
+          <div className='acccess-items-div'>
+
+            <Button onClick={() => setAddItemModal(true)} variant="outlined" startIcon={<AddIcon />}>
+              Add Items
+            </Button>
+            <Button variant="outlined" startIcon={<DeleteIcon />}>
+              Delete Items
+            </Button>
+
+          </div>
+
+        </div>
+
+
+
         <div className='book-orders-main-div'>
           <h1>Booking Orders</h1>
 
@@ -82,12 +109,13 @@ const Admin = () => {
                   <h3>{item.name}</h3>
                   <h3>{item.place}</h3>
                   <h3>₹ {item.rate}</h3>
-                  <h4>{item.triptype}</h4>
+
+
                 </div>
                 <div className='admin-placeitem-button-div'>
                   {item.status === "Waiting" ? (
                     <>
-                      <button className='accept-button' onClick={() => acceptBooking(item.id, index)}>Accept</button>
+                      <button className='accept-button' onClick={() => acceptBooking(index)}>Accept</button>
                       <button className='decline-button' onClick={() => declineBooking(index)}>Decline</button>
                     </>
                   ) : (
@@ -98,20 +126,21 @@ const Admin = () => {
                 </div>
               </div>
             ))}
+
+
           </div>
 
         </div>
 
-        <div className='site-access-div'>
-          <div className='acccess-items-div'>
+      </div>
 
-            <h4 onClick={() => setAddItemModal(true)}>Add items</h4>
-            <h4>Add Offers</h4>
 
-          </div>
-          {
-            addItemModal &&
-            <div className='addItem-modal'>
+      {
+        addItemModal &&
+        <div className='addItem-modal-main'>
+          <div className='addItem-modal'>
+            <form action="">
+              <h3>Add Items</h3>
               <input type="text" placeholder='Destination' name='name' value={addItemInputValues.name} onChange={handleChange} />
               <input type="text" placeholder='Place' name='place' value={addItemInputValues.place} onChange={handleChange} />
               <input type="text" placeholder='Image Link' name='image' value={addItemInputValues.image} onChange={handleChange} />
@@ -119,15 +148,14 @@ const Admin = () => {
               <input type="text" placeholder='Triptype' name='triptype' value={addItemInputValues.triptype} onChange={handleChange} />
 
               <div className='addItem-button-div'>
-                <button onClick={postAddItemData}>Add</button>
+                <button type='submit' onClick={postAddItemData}>Add</button>
                 <button onClick={() => setAddItemModal(false)}>close</button>
               </div>
+            </form>
+          </div>
 
-            </div>
-          }
         </div>
-
-      </div>
+      }
 
     </>
   )

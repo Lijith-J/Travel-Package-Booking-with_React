@@ -3,14 +3,14 @@ import './Login-style.css'
 import { useNavigate } from 'react-router-dom'
 import { Main_Context } from '../Context/Context_File'
 
-import logo from './images/logo.png'
+
 import visible from './images/visible.png'
 import hidden from './images/hidden.png'
 
 
 
 const LogIn = () => {
-    const { travelDatasAll,inputValue, setInputValue } = useContext(Main_Context)
+    const { TravelDatasAll,inputValue, setInputValue } = useContext(Main_Context)
     // console.log("Got Data in Log In page", travelDatasAll)
 
     const [showPassword, setShowPassword] = useState(false);
@@ -26,7 +26,7 @@ const LogIn = () => {
     console.log(inputValue)
 
 
-    const userDetails = travelDatasAll.userDatas;
+    const userDetails = TravelDatasAll.userDatas;
     console.log("userDetails", userDetails);
 
 

@@ -136,7 +136,7 @@ travelApp.post("/addPlaceItems", (req, res) => {
     placeDatas.push(inputData)
 
     console.log("Request Recieved -", inputData);
-    res.send("Post Request success")
+    res.send(placeDatas)
 })
 
 

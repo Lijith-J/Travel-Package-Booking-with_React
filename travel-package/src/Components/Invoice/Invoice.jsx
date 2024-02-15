@@ -1,12 +1,12 @@
 import React, { useContext, useRef } from 'react'
 import './Invoice_style.css'
 import { Main_Context } from '../Context/Context_File'
-import ToPDF from 'html2pdf.js'
+// import ToPDF from 'html2pdf.js'
 import { useReactToPrint } from 'react-to-print'
 
 const Invoice = () => {
 
-  const { setBillModal, inputValue, phoneNo, selectItem, TripBookings } = useContext(Main_Context)
+  const { setBillModal, BillDetails, inputValue, phoneNo, TripBookings } = useContext(Main_Context)
 
   const clientName = localStorage.getItem("clientName")
 
@@ -18,13 +18,13 @@ const Invoice = () => {
 
 
   // Print Bill Function
-  const generatePDF = () => {
-    const element = document.querySelector('.bill-div');
+  // const generatePDF = () => {
+  //   const element = document.querySelector('.bill-div');
 
-    ToPDF()
-      .from(element)
-      .save();
-  };
+  //   ToPDF()
+  //     .from(element)
+  //     .save();
+  // };
 
   const componentRef = useRef()
 
@@ -53,16 +53,19 @@ const Invoice = () => {
               <td colSpan={2}>Client Name:{clientName}</td>
               <td colSpan={2}>Ph.No:{phoneNo}</td>
             </tr>
-            <tr className='table-headings-row'>
-              <th colSpan={3}>{TripBookings[0].name}</th>
 
-            </tr>
             <tr className='table-items-row'>
-              <td colSpan={3}>{TripBookings[0].place}</td>
+
+              <td colSpan={3}>
+                {BillDetails.name}
+                <br />
+              {BillDetails.place}
+              </td>
+             
 
             </tr>
             <tr className='table-total-row'>
-              <td colSpan={4}>Rate :{TripBookings[0].rate}</td>
+              <td colSpan={4}>Rate : ₹ {BillDetails.rate}/-</td>
             </tr>
 
           </table>

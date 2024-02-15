@@ -7,13 +7,13 @@ import { Main_Context } from '../Context/Context_File'
 
 const Navbar = () => {
 
-  const { travelDatasAll, setFindPlace } = useContext(Main_Context)
+  const { TravelDatasAll, setFindPlace } = useContext(Main_Context)
 
   const [inputValue, setInputValue] = useState('')
 
   let goToPage = useNavigate()
 
-  const placeDatas = travelDatasAll.placeDatas
+  const placeDatas = TravelDatasAll.placeDatas
 
   // console.log('placedatass', placeDatas);
 
@@ -62,7 +62,7 @@ const Navbar = () => {
       setScrollPosition(position);
 
       // Change background color after scrolling down
-      if (position > 100) {
+      if (position > 60) {
         setNavbarBackground("white"); // Change to whatever color you want
         setNavbarFont("black")
       } else {
@@ -83,7 +83,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='nav-main' style={{ background: navbarBackground,  transition:"0.5s ease-in-out"}}>
+      <div className='nav-main' style={{ background: navbarBackground,  transition:"0.3s ease-in-out"}}>
         <div className="logo-div">
           <img className='logo' alt="" />
         </div>
@@ -98,8 +98,8 @@ const Navbar = () => {
 
         <div className='page-navigations-div' >
           <Link to={'/home'} style={{color: navbarFont}} className='nav-links'>Home</Link>
-          <Link to={'/admin'} style={{color: navbarFont}} className='nav-links'>Admin</Link>
           <Link to={'/mybookings'} style={{color: navbarFont}} className='nav-links'>My Bookings</Link>
+          <Link to={'/admin'} style={{color: navbarFont}} className='nav-links'>Admin</Link>
           <Link to={'/'} style={{color: navbarFont}} className='nav-links'>Log In</Link>
         </div>
 
