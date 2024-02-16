@@ -1,15 +1,13 @@
-
-
 .booking-headline-div {
     background-color: teal;
     width: 100%;
     height: 90px;
     display: flex;
     justify-content: start;
-    align-items: center; 
+    align-items: center;
 }
 
-.booking-headline-div h2{
+.booking-headline-div h2 {
     /* background-color: white; */
     color: white;
     margin-left: 25px;
@@ -18,55 +16,42 @@
 
 
 .mybooking-contents-div {
-    background-color: blue;
+    background-color: rgb(255, 255, 255);
     width: 100%;
-    height: 800px;
-    
+    height: 100vh;
 }
 
 .Bookings-mainDiv {
-    background-color: yellowgreen;
-    width: 70%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-   
-}
-
-.Bookings-mainDiv {
-    text-align: center;
-}
-
-.myBookings-div {
-    background-color: violet;
+    /* background-color: yellowgreen; */
     width: 100%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 25px;
+    height: 95%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    padding-top: 35px;
     gap: 20px;
     overflow-x: hidden;
+    position: absolute;
 }
 
-.myBookings-div::-webkit-scrollbar {
+.Bookings-mainDiv::-webkit-scrollbar {
     width: 0;
 }
 
 .myBookings-item-div {
-    background-color: #463C46;
-    width: 89%;
-    height: 30%;
+    background-color: white;
+    width: 87%;
+    height: 200px;
     display: flex;
     align-items: center;
-    color: white;
-
-    box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.062);
+    /* color: white; */
+    border: 1px solid rgb(215, 215, 215);
+    /* box-shadow: 0 0 5px 3px rgb(238, 237, 237); */
 }
 
 .myBookings-item-image-div {
     /* background-color: tomato; */
-    width: 30%;
+    width: 35%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -75,12 +60,13 @@
 }
 
 .myBookings-item-image-div img {
-    width: 150px;
+    width: 210px;
+    box-shadow: 5px 5px 7px 1px rgb(124, 123, 123);
 }
 
 .myBookings-place-details-div {
     /* background-color: burlywood; */
-    width: 50%;
+    width: 45%;
     height: 100%;
     text-align: center;
 }
@@ -91,12 +77,16 @@
 
 
 .order-status-div {
+    /* background-color: turquoise; */
+    width: 20%;
+    height: 50%;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
 }
 
-.pdfIcon{
+.pdfIcon {
     display: block;
     width: 25px;
     cursor: pointer;

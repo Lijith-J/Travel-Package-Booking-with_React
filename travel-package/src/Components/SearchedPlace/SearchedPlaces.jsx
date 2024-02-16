@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import './SearchedPlace_style.css'
 import { Main_Context } from '../Context/Context_File'
 import closeBtn from './images/close (1).png'
-import Invoice from '../Invoice/Invoice'
 import Footer from '../Footer/Footer'
+
+
 
 // import offer1 from './images/offer1.webp'
 
@@ -22,9 +23,6 @@ const SearchedPlaces = () => {
   const [selectItem, setSelectItem] = useState(null) // Select an item when click book, 
   //the item will add to an array, when click submitItem  function
 
-
-  // console.log("trippppp ----", TripBookings);
-  // console.log("myy booking ----", MyBookings)
 
   const bookItem = (item) => {
     setSelectItem(item)
@@ -46,8 +44,6 @@ const SearchedPlaces = () => {
       setPhoneNoModal(false)
     }
     closeModal()
-
-    openBillModal()
 
   }
 
@@ -72,21 +68,20 @@ const SearchedPlaces = () => {
     setPhoneNo(e.target.value)
   }
 
-  // Bill Modal Functions
 
-  const openBillModal = () => {
-    setBillModal(true)
-  }
 
   return (
     <>
 
+      <div className='searchPlace-headline-div'>
+        <h2>BOOK YOUR TRIP</h2>
+      </div>
+      <div>
+        
+      </div>
 
       <div className='page-content-div'>
         <div className='search-Items-main'>
-          <h2>BOOK YOUR TRIP</h2>
-
-          <div className='place-items-div'>
 
             {
               findPlace.map((item, index) => (
@@ -108,32 +103,28 @@ const SearchedPlaces = () => {
               ))
             }
 
-          </div>
-
         </div>
 
-        {/* <div className='Ads-div'>
-         
-        </div> */}
 
-      </div>
-
-      {
-        phoneNoModal && (
-          <div className='phoneNoModal-parent-div'>
-            <div className='modal-div'>
-              <img src={closeBtn} onClick={closeModal} className='modal-close-btn' />
-              <div className='modal-form'>
-                <label htmlFor="">Phone </label>
-                <input type="text" value={phoneNo} onChange={getPhoneNumber} required minLength={10} placeholder=' Phone No' />
-                <div className='modal-buttons-div'>
-                  <button type="submit" onClick={submitItem}>Submit</button>
+        {
+          phoneNoModal && (
+            <div className='phoneNoModal-parent-div'>
+              <div className='modal-div'>
+                <img src={closeBtn} onClick={closeModal} className='modal-close-btn' />
+                <div className='modal-form'>
+                  <label htmlFor="">Phone </label>
+                  <input type="text" value={phoneNo} onChange={getPhoneNumber} required minLength={10} placeholder=' Phone No' />
+                  <div className='modal-buttons-div'>
+                    <button type="submit" onClick={submitItem}>Submit</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        )
-      }
+          )
+        }
+
+
+      </div>
 
 
       <Footer />

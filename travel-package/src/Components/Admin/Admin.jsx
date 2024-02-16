@@ -9,6 +9,10 @@ import AddIcon from '@mui/icons-material/Add'
 import DeleteIcon from '@mui/icons-material/Delete'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
+
+import * as XLSX  from 'xlsx';
+
+
 const Admin = () => {
   const { TripBookings, setTripBookings, addItemInputValues, setAddItemInputValues } = useContext(Main_Context)
   // console.log("liiii", TripBookings)
@@ -53,18 +57,34 @@ const Admin = () => {
   // Fetch Post Data function
 
   const postAddItemData = async (e) => {
-    
-      try {
-        const postURL = await axios.post('http://localhost:4004/addPlaceItems', addItemInputValues)
-        const postResponse = postURL.data
-        console.log(postResponse);
-      }
-      catch {
-        console.log('Post Data Error')
-      }
-    
+
+    try {
+      const postURL = await axios.post('http://localhost:4004/addPlaceItems', addItemInputValues)
+      const postResponse = postURL.data
+      console.log(postResponse);
+    }
+    catch {
+      console.log('Post Data Error')
+    }
+
   }
 
+
+
+
+  // const exportToExcel = () => {
+  //   const workbook = new XLSX.Workbook();
+  //   const worksheet = workbook.addWorksheet('My Sheet');
+
+  //   // Add the data to the worksheet.
+  //   for (let i = 0; i < TripBookings.length; i++) {
+  //     worksheet.setCellValue(i + 1, 1, TripBookings[i]);
+  //   }
+
+  //   // Save the workbook.
+  //   workbook.XLSX.writeFile('my-excel-file.xlsx');
+
+  // };
 
 
   return (
@@ -72,14 +92,15 @@ const Admin = () => {
 
       <div className='admin-headline'>
         <h2>Admin Dashboard</h2>
+{/* <button onClick={exportToExcel}>Excel</button> */}
+
         <Link to={'/'}><Button variant='outlined' endIcon={<ExitToAppIcon />}>Logout</Button></Link>
+
       </div>
 
 
-
       <div className='admin-content-div'>
-
-
+  
         <div className='site-access-div'>
           <div className='acccess-items-div'>
 

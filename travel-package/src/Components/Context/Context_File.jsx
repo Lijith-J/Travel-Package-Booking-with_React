@@ -1,6 +1,9 @@
 import React, { createContext, useEffect, useState } from 'react'
 import axios from 'axios'
 
+import * as XLSX from 'xlsx';
+
+
 export const Main_Context = createContext()
 
 const Context_File = ({ children }) => {
@@ -45,12 +48,27 @@ const Context_File = ({ children }) => {
 
     localStorage.setItem("TripBookings", JSON.stringify(TripBookings))
 
-
     useEffect(() => {
         getTravelBookingsFormStorage()
     }, [])
 
-    console.log("booookings",TripBookings)
+
+   
+
+        const exportToExcel = () => {
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet(TripBookings);
+            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+            // Generate a file name
+            const fileName = 'data.xlsx';
+
+            // Write the workbook to a file
+            XLSX.writeFile(wb, fileName);
+        };
+    
+
+    // console.log("booookings",TripBookings)
 
     // Phone Number InputValue
     const [phoneNo, setPhoneNo] = useState('')
@@ -59,7 +77,7 @@ const Context_File = ({ children }) => {
     const [BillModal, setBillModal] = useState(false)
 
     // Invoice Bill
-    const [BillDetails, setBillDetails]= useState()
+    const [BillDetails, setBillDetails] = useState()
 
     // MyOrder Status
     const [orderStatus, SetOrderStatus] = useState('Waiting')
@@ -114,6 +132,9 @@ const Context_File = ({ children }) => {
             phoneNo, setPhoneNo,
             orderStatus, SetOrderStatus,
             addItemInputValues, setAddItemInputValues,
+
+            exportToExcel
+
         }}>
 
             {children}
