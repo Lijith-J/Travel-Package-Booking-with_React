@@ -216,21 +216,25 @@ ________________________________________________________*/
     justify-content: center;
     align-items: center;
 }
-.download-text-div img{
+
+.download-text-div img {
     width: 50px;
 }
-.download-text-div h1{
+
+.download-text-div h1 {
     animation: zoom 0.9s infinite ease-in-out;
 }
 
 @keyframes zoom {
-    0%{
+    0% {
         transform: scale(1);
     }
-    50%{
+
+    50% {
         transform: scale(1.2);
     }
-    100%{
+
+    100% {
         transform: scale();
     }
 }
@@ -259,6 +263,39 @@ ________________________________________________________*/
     justify-content: center;
     align-items: center;
 }
-.QR-div img{
+
+.QR-div img {
     width: 120px;
 }
+
+/* _____________________________________________________________ */
+
+.swiper-maindiv {
+    background-color: rgba(70, 70, 70, 0.499);
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.swiper-div {
+    /* background-color: yellowgreen; */
+    width: 300px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+
+    animation: marquee 10s linear infinite;
+}
+.swiper-div img{
+    width: 70%;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }

@@ -31,13 +31,16 @@ const Navbar = () => {
     let searchText = capitalizeFirstLetter(e.target.value)
     setInputValue(searchText)
   }
+  
   // console.log('search value', inputValue);
 
 
   const searchPlace = (e) => {
+
     e.preventDefault()
 
     const searchItem = placeDatas.filter((item) => item.place === inputValue)
+    
     // console.log("itemmm", searchItem);
 
     if (inputValue === '') {
@@ -49,7 +52,6 @@ const Navbar = () => {
     else if (searchItem) {
       setFindPlace(searchItem)
       goToPage('/seachplace')
-
     }
   }
 
@@ -83,7 +85,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='nav-main' style={{ background: navbarBackground,  transition:"0.3s ease-in-out"}}>
+      <div className='nav-main' style={{ background: navbarBackground, transition: "0.3s ease-in-out" }}>
         <div className="logo-div">
           <img className='logo' alt="" />
         </div>
@@ -97,10 +99,9 @@ const Navbar = () => {
         </div>
 
         <div className='page-navigations-div' >
-          <Link to={'/home'} style={{color: navbarFont}} className='nav-links'>Home</Link>
-          <Link to={'/mybookings'} style={{color: navbarFont}} className='nav-links'>My Bookings</Link>
-          <Link to={'/admin'} style={{color: navbarFont}} className='nav-links'>Admin</Link>
-          <Link to={'/'} style={{color: navbarFont}} className='nav-links'>Log In</Link>
+          <Link to={'/home'} style={{ color: navbarFont }} className='nav-links'>Home</Link>
+          <Link to={'/mybookings'} style={{ color: navbarFont }} className='nav-links'>My Bookings</Link>
+          <Link to={'/'} style={{ color: navbarFont }} className='nav-links'>Log In</Link>
         </div>
 
 

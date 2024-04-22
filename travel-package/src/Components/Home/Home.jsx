@@ -3,24 +3,33 @@ import './Home_style.css'
 import { Main_Context } from '../Context/Context_File'
 import Footer from '../Footer/Footer'
 
+import 'swiper'
+import 'swiper/swiper-bundle.css'
 
-import downloadIcon  from './images/download/download.png'
+
+import downloadIcon from './images/download/download.png'
 import plstoreImg from './images/download/google.png'
 import appstoreImg from './images/download/app.png'
 
 import QRCodeImg from './images/download/QRCode.avif'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 
 const Home = () => {
+  useContext(Main_Context)
 
-  const { travelDatasAll } = useContext(Main_Context)
+  const allDatas = JSON.parse(localStorage.getItem('Travel All Datas'))
+
+  const Placedatas = allDatas.placeDatas
+
+  // console.log('iiiiii', Placedatas);
 
 
   return (
     <>
 
       <div className='homePage-backDesign  backImage'>
-
+        {/* back image */}
       </div>
 
       <div className='homePage-AllContent-div'>
@@ -41,7 +50,7 @@ const Home = () => {
         </div>
 
         <div className='trip-categories-div'>
-        
+
 
           <div className='adventure-div'>
             <h1>Adventure</h1>
@@ -64,8 +73,38 @@ const Home = () => {
             </div>
           </div>
 
-
         </div >
+
+
+        <br />
+        <br />
+        <br />
+        <br />
+
+
+        <div className='swiper-maindiv'>
+          <Swiper
+            // spaceBetween={50}
+            slidesPerView={4}
+          >
+
+            {
+              Placedatas && Placedatas.length > 0 && Placedatas.map((item) => (
+                <marquee behavior="" direction="right">
+                  <SwiperSlide key={item.id}>
+                    <div className='swiper-div'>
+                      <img src={item.image} alt="" />
+                      <h6>{item.name}</h6>
+                    </div>
+                  </SwiperSlide>
+                </marquee>
+              ))
+            }
+
+
+          </Swiper>
+        </div>
+
 
 
         <div className='downloadApp-main-div'>
@@ -74,7 +113,7 @@ const Home = () => {
             <div className='download-text-div'>
               <img src={downloadIcon} alt="" />
               <h1>Download App Now!</h1>
-              {/* <span>Use code WELCOMEMMT and get FLAT 12% OFF* on your first domestic flight booking</span> */}
+
             </div>
 
             <div className='appStore-div'>
@@ -83,18 +122,22 @@ const Home = () => {
 
             </div>
             <div className='QR-div'>
-            <img src={QRCodeImg} alt="" />
+              <img src={QRCodeImg} alt="" />
 
             </div>
 
           </div>
 
         </div>
+        <br />
+        <br />
+        <br />
+        <br />
 
         <Footer />
 
 
-      </div>
+      </div >
     </>
   )
 }

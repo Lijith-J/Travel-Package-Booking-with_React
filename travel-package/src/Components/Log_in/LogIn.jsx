@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import './Login-style.css'
 import { useNavigate } from 'react-router-dom'
 import { Main_Context } from '../Context/Context_File'
-
+import { Link } from 'react-router-dom'
 
 import visible from './images/visible.png'
 import hidden from './images/hidden.png'
@@ -77,6 +77,8 @@ const LogIn = () => {
 
                         <span className='check-inputvalue'></span>
                         <button className='logIn-button' onClick={checkLogin} >Log In</button>
+
+                        <Link to={'/home'} >Skip</Link>
 
                    
                 </div>

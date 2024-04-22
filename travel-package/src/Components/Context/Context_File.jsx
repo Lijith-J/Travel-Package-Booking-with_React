@@ -53,20 +53,20 @@ const Context_File = ({ children }) => {
     }, [])
 
 
-   
 
-        const exportToExcel = () => {
-            const wb = XLSX.utils.book_new();
-            const ws = XLSX.utils.aoa_to_sheet(TripBookings);
-            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-            // Generate a file name
-            const fileName = 'data.xlsx';
+    const exportToExcel = () => {
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.aoa_to_sheet(TripBookings);
+        XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-            // Write the workbook to a file
-            XLSX.writeFile(wb, fileName);
-        };
-    
+        // Generate a file name
+        const fileName = 'data.xlsx';
+
+        // Write the workbook to a file
+        XLSX.writeFile(wb, fileName);
+    };
+
 
     // console.log("booookings",TripBookings)
 

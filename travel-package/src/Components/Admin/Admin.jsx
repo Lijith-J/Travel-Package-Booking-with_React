@@ -29,7 +29,6 @@ const Admin = () => {
         return booking;
       });
     });
-
   };
 
   const declineBooking = (itemIndex) => {
