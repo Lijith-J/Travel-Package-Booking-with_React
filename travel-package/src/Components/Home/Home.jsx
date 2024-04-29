@@ -3,7 +3,7 @@ import './Home_style.css'
 import { Main_Context } from '../Context/Context_File'
 import Footer from '../Footer/Footer'
 
-import 'swiper'
+
 import 'swiper/swiper-bundle.css'
 
 
@@ -90,14 +90,14 @@ const Home = () => {
 
             {
               Placedatas && Placedatas.length > 0 && Placedatas.map((item) => (
-                <marquee behavior="" direction="right">
+              
                   <SwiperSlide key={item.id}>
                     <div className='swiper-div'>
                       <img src={item.image} alt="" />
                       <h6>{item.name}</h6>
                     </div>
                   </SwiperSlide>
-                </marquee>
+               
               ))
             }
 
