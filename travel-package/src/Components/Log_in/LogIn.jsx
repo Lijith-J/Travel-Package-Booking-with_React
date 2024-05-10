@@ -12,6 +12,7 @@ import { IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from
 import { makeStyles } from '@mui/styles'
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Visibility from '@mui/icons-material/Visibility';
+import axios from 'axios'
 
 
 const useStyles = makeStyles({
@@ -25,11 +26,16 @@ const useStyles = makeStyles({
 
 const LogIn = () => {
 
+    const navigate = useNavigate()
+
     const classes = useStyles()
+
+    const [err, setErr] = useState("")
 
     const [registerSwitch, setRegisterSwitching] = useState(false)
 
     const { TravelDatasAll, inputValue, setInputValue } = useContext(Main_Context)
+
     // console.log("Got Data in Log In page", travelDatasAll)
 
     const [showPassword, setShowPassword] = useState(false);
@@ -37,99 +43,130 @@ const LogIn = () => {
 
     const locate = useNavigate()
 
-    const [formData, setFormData] = useState({
+    const [registerformData, setRegiterFormData] = useState({
         name: '',
         email: '',
         password: '',
         userType: ''
     });
-    console.log(formData)
+
+    const [loginFormData, setLoginFormData] = useState({
+        username: '',
+        password: ''
+    })
+
+    console.log(loginFormData)
+    console.log(registerformData)
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        setFormData(prevState => ({
+        setRegiterFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+        setLoginFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+    const handleLoginInputChange = (event) => {
+        const { name, value } = event.target;
+
+        setLoginFormData(prevState => ({
             ...prevState,
             [name]: value
         }));
     };
 
 
-    const handlechange = (e) => {
-        const { name, value } = e.target
-        setInputValue((prev) => ({ ...prev, [name]: value }))
+    const registerUser = async (e) => {
+        e.preventDefault();
+
+        try {
+
+            const response = await axios.post('http://localhost:4004/api/auth/register', registerformData,
+                { withCredentials: true })
+            console.log(response.data)
+            alert('Registered Succesfully')
+        }
+        catch (err) {
+            console.error(err);
+            alert(err.response.data)
+
+        }
     }
 
-    console.log(inputValue)
 
 
-    const userDetails = TravelDatasAll.userDatas;
-    console.log("userDetails", userDetails);
-
-
-    const checkLogin = (e) => {
+    const logInUser = async (e) => {
 
         e.preventDefault()
 
-        if (inputValue === '') {
-            const checkInput = document.querySelector('.check-inputvalue')
-            checkInput.style.display = "inline"
-            checkInput.innerHTML = "Please Enter Details"
-        }
-        else {
 
-            const findUser = userDetails.find(item => item.username === inputValue.username && item.password === inputValue.password);
-            if (!findUser) {
-                const checkInput = document.querySelector('.check-inputvalue')
-                checkInput.style.display = "inline"
-                checkInput.innerHTML = "User Not Found"
+        try {
+            const response = await axios.post('http://localhost:4004/api/auth/login', loginFormData,
+                { withCredentials: true })
+            console.log(response.data)
+            alert('Login Succesfully')
+            const userData = response.data
+
+            if (userData.usertype === 'admin') {
+                navigate('/admin')
             } else {
-                if (findUser.userType === 'admin') {
-                    locate('/admin')
-                } else {
-                    locate('/home')
-                }
-
-                localStorage.setItem("clientName", inputValue.username)
+                navigate('/home')
             }
         }
+        catch (err) {
+            console.error(err);
+            alert(err.response.data)
+        }
     }
+
 
 
     return (
 
-        <div>
+        <>
 
-            <div className='h-screen flex justify-center items-center login-main '>
+            <div className='h-screen flex justify-center items-center bg-blue-100 login-main '>
 
 
                 {
                     registerSwitch ? (
-                        <div className='md:w-[28%] md:h-[60%] rounded-2xl login-form'>
 
-                            <input type="text"
+                        <form className='md:w-[28%] md:h-[60%] rounded-2xl login-form'>
+
+                            <TextField
+                                className={classes.textField}
+                                label='Name'
+                                type="text"
                                 name="name"
-                                value={formData.name}
+                                value={registerformData.name}
                                 onChange={handleInputChange}
-                                className='p-3'
-                                placeholder='Name' />
+                                placeholder='' />
 
-                            <input type="email"
+                            <TextField
+                                className={classes.textField}
+                                label='Email'
+                                type="email"
                                 name="email"
-                                value={formData.email}
+                                value={registerformData.email}
                                 onChange={handleInputChange}
-                                className='p-3'
-                                placeholder='Email' />
+                                placeholder='' />
 
-                            <input type="text"
+                            <TextField
+                                className={classes.textField}
+                                label='Password'
+                                type="text"
                                 name="password"
-                                value={formData.password}
+                                value={registerformData.password}
                                 onChange={handleInputChange}
-                                className='p-3'
-                                placeholder='Password' />
+                                placeholder='' />
 
                             <select
+                                required
                                 name="userType"
-                                value={formData.userType}
+                                value={registerformData.userType}
                                 onChange={handleInputChange}
                                 className='p-3'
                             >
@@ -138,11 +175,13 @@ const LogIn = () => {
                                 <option value="client">Client</option>
                             </select>
 
-                            <button className='ring-2 ring-white p-3'>Register</button>
+                            <button className='ring-2 ring-white p-3'
+                                onClick={registerUser}
+                            >Register</button>
 
                             <Link onClick={() => setRegisterSwitching(false)}>Log in</Link>
 
-                        </div>
+                        </form>
                     )
                         :
                         (
@@ -153,10 +192,11 @@ const LogIn = () => {
                                 <TextField
                                     className={classes.textField}
                                     label="Username"
-                                    type="text"
+                                    placeholder='Email'
+                                    type="email"
                                     name='username'
-                                    value={inputValue.username}
-                                    onChange={handlechange}
+                                    value={loginFormData.username}
+                                    onChange={handleLoginInputChange}
                                 />
 
                                 <FormControl variant="outlined" className={classes.textField}>
@@ -166,7 +206,7 @@ const LogIn = () => {
                                         id="outlined-adornment-password"
                                         type={showPassword ? "text" : "password"}
                                         name='password'
-                                        value={inputValue.password} onChange={handlechange}
+                                        value={loginFormData.password} onChange={handleLoginInputChange}
                                         endAdornment={
                                             <InputAdornment position="end">
                                                 <IconButton
@@ -184,7 +224,7 @@ const LogIn = () => {
 
 
                                 <span className='check-inputvalue'></span>
-                                <button className='logIn-button' type='submit' onClick={checkLogin} >Log In</button>
+                                <button className='logIn-button' type='submit' onClick={logInUser} >Log In</button>
 
                                 <Link to={'/home'} >Skip</Link>
 
@@ -199,7 +239,7 @@ const LogIn = () => {
 
             </div>
 
-        </div >
+        </ >
     )
 }
 

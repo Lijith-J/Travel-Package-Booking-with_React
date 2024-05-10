@@ -10,23 +10,25 @@ import Invoice from './Components/Invoice/Invoice';
 import MyBookings from './Components/MyBookings/MyBookings';
 import Footer from './Components/Footer/Footer';
 
-//   00510003808198
 
 function App() {
+
   return (
 
     <BrowserRouter>
-      <Routes>
 
+      <Routes>
         <Route index element={<LogIn />} />
-        <Route path='/' element={<Navbar />} >
+
+        <Route element={<Navbar />} >
           <Route path='/home' element={<Home />} />
           <Route path='/seachplace' element={<SearchedPlaces />} />
           <Route path='/invoice' element={<Invoice />} />
           <Route path='/mybookings' element={<MyBookings />} />
-          <Route path='/' element={<Footer />} />
+          <Route path='/footer' element={<Footer />} />
         </Route>
-          <Route path='/admin' element={<Admin />} />
+
+        <Route path='/admin' element={<Admin />} />
 
       </Routes>
     </BrowserRouter>

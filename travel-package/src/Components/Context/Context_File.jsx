@@ -55,19 +55,6 @@ const Context_File = ({ children }) => {
 
 
 
-    const exportToExcel = () => {
-        const wb = XLSX.utils.book_new();
-        const ws = XLSX.utils.aoa_to_sheet(TripBookings);
-        XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-        // Generate a file name
-        const fileName = 'data.xlsx';
-
-        // Write the workbook to a file
-        XLSX.writeFile(wb, fileName);
-    };
-
-
     // console.log("booookings",TripBookings)
 
     // Phone Number InputValue
@@ -100,20 +87,20 @@ const Context_File = ({ children }) => {
 
 
     //   Fetching Datas from API to Get
-    const getData = async () => {
+    // const getData = async () => {
 
-        try {
-            const dataUrl = await axios.get("http://localhost:4004/traveldata")
-            setTravelDatasAll(dataUrl.data)
-        }
-        catch {
-            console.error("Data Didn't get from API");
-        }
-    }
+    //     try {
+    //         const dataUrl = await axios.get("http://localhost:4004/traveldata")
+    //         setTravelDatasAll(dataUrl.data)
+    //     }
+    //     catch {
+    //         console.error("Data Didn't get from API");
+    //     }
+    // }
 
-    useEffect(() => {
-        getData()
-    }, [addItemInputValues])
+    // useEffect(() => {
+    //     getData()
+    // }, [addItemInputValues])
 
     // ________________________________________________________________________________
 
@@ -132,8 +119,6 @@ const Context_File = ({ children }) => {
             phoneNo, setPhoneNo,
             orderStatus, SetOrderStatus,
             addItemInputValues, setAddItemInputValues,
-
-            exportToExcel
 
         }}>
 
