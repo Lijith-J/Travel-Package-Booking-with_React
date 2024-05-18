@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react'
 import axios from 'axios'
+import { placeDatas } from '../../data';
 
-import * as XLSX from 'xlsx';
 
 
 export const Main_Context = createContext()
@@ -101,6 +101,10 @@ const Context_File = ({ children }) => {
     // useEffect(() => {
     //     getData()
     // }, [addItemInputValues])
+
+    useEffect(() => {
+        setTravelDatasAll(placeDatas)
+    }, [])
 
     // ________________________________________________________________________________
 
