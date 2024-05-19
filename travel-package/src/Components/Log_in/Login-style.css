@@ -1,17 +1,13 @@
 .login-main {
-    background-image: url(./images/eva-darron-oCdVtGFeDC0-unsplash.jpg);
+    background-image:linear-gradient(rgba(0, 0, 0, 0.443), rgba(0, 0, 0, 0.443)), url(./images/eva-darron-oCdVtGFeDC0-unsplash.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-
-  
 }
 
 .login-form {
     /* backdrop-filter: blur(15px); */
-    background-color: rgba(10, 115, 147, 0.341);
-   
-
+    background-color: rgba(255, 255, 255, 0.453);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

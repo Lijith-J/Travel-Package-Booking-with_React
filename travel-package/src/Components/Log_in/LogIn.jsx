@@ -18,17 +18,18 @@ import axios from 'axios'
 const useStyles = makeStyles({
     textField: {
         borderColor: 'white',
-        width: '70%'
+        width: '70%',
+        outline:"white"
     },
 });
 
 
 
 const LogIn = () => {
-
+    const classes = useStyles()
+    
     const navigate = useNavigate()
 
-    const classes = useStyles()
 
     const [err, setErr] = useState("")
 

@@ -20,9 +20,9 @@ const Home = () => {
 
   const allDatas = JSON.parse(localStorage.getItem('Travel All Datas'))
 
-  const Placedatas = allDatas.placeDatas
+ 
 
-  // console.log('iiiiii', Placedatas);
+  // console.log('iiiiii', allDatas);
 
 
   return (
@@ -89,7 +89,7 @@ const Home = () => {
           >
 
             {
-              Placedatas && Placedatas.length > 0 && Placedatas.map((item) => (
+              allDatas && allDatas.length > 0 && allDatas.map((item) => (
               
                   <SwiperSlide key={item.id}>
                     <div className='swiper-div'>

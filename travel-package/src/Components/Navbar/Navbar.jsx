@@ -13,7 +13,7 @@ const Navbar = () => {
 
   let goToPage = useNavigate()
 
-  const placeDatas = TravelDatasAll.placeDatas
+ 
 
   // console.log('placedatass', placeDatas);
 
@@ -39,7 +39,7 @@ const Navbar = () => {
 
     e.preventDefault()
 
-    const searchItem = placeDatas.filter((item) => item.place === inputValue)
+    const searchItem = TravelDatasAll.filter((item) => item.place === inputValue)
     
     // console.log("itemmm", searchItem);
 
