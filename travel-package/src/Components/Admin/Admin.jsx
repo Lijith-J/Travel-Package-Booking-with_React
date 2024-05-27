@@ -14,7 +14,7 @@ const Admin = () => {
   const { TripBookings, setTripBookings, addItemInputValues, setAddItemInputValues } = useContext(Main_Context)
   // console.log("liiii", TripBookings)
 
-  const navigate = useNavigate()
+  const locate = useNavigate()
 
   const [addItemModal, setAddItemModal] = useState(false)
 
@@ -70,16 +70,10 @@ const Admin = () => {
 
 
 
-  const logoutUser = async () => {
-
-    try {
-      await axios.post('http://localhost:4004/api/auth/logout', {}, { withCredentials: true })
-        alert('Bye....!')
-        navigate('/')
-    }
-    catch (err) {
-      console.error(err);
-    }
+  const logoutUser = () => {
+    localStorage.removeItem('token');
+    alert('Logout successful');
+    locate('/')
   }
 
   return (

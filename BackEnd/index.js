@@ -1,30 +1,121 @@
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser'
-import authRouter from './Routes/routes.js';
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import bodyParser from "body-parser";
+import jwt from "jsonwebtoken";
+import bycrypt from 'bcryptjs'
 
 const travelApp = express();
+let port = 4004;
 
-travelApp.use(bodyParser.json())
+travelApp.use(bodyParser.json());
 
-travelApp.use(cors(
-    {
+travelApp.use(
+    cors({
         origin: "http://localhost:3000",
-        credentials:true
+        credentials: true,
+    })
+);
+
+mongoose.connect("mongodb://localhost:27017/Travel_package")
+    .then(() => {
+        console.log("Database Connected");
+    })
+    .catch((err) => {
+        console.error("Database Connection Error", err);
+    });
+
+const userSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    password: String,
+    usertype: String,
+},{versionKey:false});
+
+const User = mongoose.model('users', userSchema)
+
+travelApp.post('/register', async (req, res) => {
+    const { name, email, password, usertype } = req.body;
+    console.log("Register Data", req.body)
+
+    try {
+        const hashedPassword = await bycrypt.hash(password, 10)
+        const newUser = new User({ name, email, password: hashedPassword, usertype });
+        await newUser.save();
+        const token = jwt.sign({ userId: newUser._id }, 'your_jwt-secret');
+
+        res.status(201).json({ message: "User register successful", token })
     }
-))
+    catch (err) {
+        res.status(400).json({ error: err.message })
+    }
 
-travelApp.use('/api/auth', authRouter)
+})
 
-let port = 4004
+travelApp.post('/login', async (req, res) => {
+
+    const { email, password } = req.body;
+    console.log("Login Data", req.body)
+
+    try {
+        const user = await User.findOne({
+            $or: [
+                { email: email },
+                { password: password }
+            ]
+        });
+
+        if (!user) {
+            return res.status(400).json({ message: "User not registered" })
+        }
+
+        const isPasswordValid = await bycrypt.compare(password, user.password)
+
+        if (!isPasswordValid) {
+            return res.status(400).json({ message: "Password is incorrect" })
+        }
+
+        const token = jwt.sign({ userId: user._id }, 'your_jwt_secret');
+        res.status(200).json({ message: "Login successful", token, user })
+
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+const authenticateJWT = (req, res, next) => {
+    const token = req.headers.authorization?.split('')[1];
+
+    if (token) {
+        jwt.verify(token, 'your_jwt_secret', (err, user) => {
+            if (err) {
+                return res.sendStatus(403);
+            }
+            req.user = user;
+            next()
+        })
+    }
+    else {
+        res.sendStatus(401);
+    }
+}
+travelApp.get('/protected', authenticateJWT, (req, res) => {
+    res.status(200).json({ message: "This is a proctected route", user: req.user })
+})
 
 travelApp.listen(port, () => {
-    console.log(`API Loading Success ${port}`)
-})
+    console.log(`Running Port Success ${port}`);
+});
+
+
+
+
+
+
 
 
 // http://localhost:4004/traveldata
-
 
 // const placeDatas = [
 //     {
@@ -108,11 +199,10 @@ travelApp.listen(port, () => {
 //         triptype: 'Luxury',
 //         status: "Waiting"
 //     },
-    
+
 // ]
 
 // _______________________________________________________________________
-
 
 // const userDatas = [
 
@@ -134,9 +224,8 @@ travelApp.listen(port, () => {
 //         password: "appu",
 //         userType: "client"
 //     },
-    
-// ]
 
+// ]
 
 // travelApp.get("/traveldata", (req, res) => {
 //     res.send({ placeDatas: placeDatas, userDatas: userDatas });

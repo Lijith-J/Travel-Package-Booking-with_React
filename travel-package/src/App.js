@@ -18,6 +18,7 @@ function App() {
     <BrowserRouter>
 
       <Routes>
+
         <Route index element={<LogIn />} />
 
         <Route element={<Navbar />} >
@@ -31,6 +32,7 @@ function App() {
         <Route path='/admin' element={<Admin />} />
 
       </Routes>
+      
     </BrowserRouter>
 
   );
