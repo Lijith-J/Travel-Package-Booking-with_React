@@ -73,7 +73,7 @@ const Admin = () => {
   const logoutUser = () => {
     localStorage.removeItem('token');
     alert('Logout successful');
-    locate('/')
+    window.location.href = '/'
   }
 
   return (

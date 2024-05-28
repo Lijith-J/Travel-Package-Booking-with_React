@@ -4,11 +4,13 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import jwt from "jsonwebtoken";
 import bycrypt from 'bcryptjs'
+import cookieParser from "cookie-parser";
 
 const travelApp = express();
 let port = 4004;
 
 travelApp.use(bodyParser.json());
+travelApp.use(cookieParser())
 
 travelApp.use(
     cors({
@@ -44,6 +46,7 @@ travelApp.post('/register', async (req, res) => {
         await newUser.save();
         const token = jwt.sign({ userId: newUser._id }, 'your_jwt-secret');
 
+        res.cookie('token',token,{httpOnly:true});
         res.status(201).json({ message: "User register successful", token })
     }
     catch (err) {
@@ -76,6 +79,7 @@ travelApp.post('/login', async (req, res) => {
         }
 
         const token = jwt.sign({ userId: user._id }, 'your_jwt_secret');
+        res.cookie('token',token,{httpOnly:true})
         res.status(200).json({ message: "Login successful", token, user })
 
     }
@@ -85,7 +89,8 @@ travelApp.post('/login', async (req, res) => {
 });
 
 const authenticateJWT = (req, res, next) => {
-    const token = req.headers.authorization?.split('')[1];
+
+    const token = req.cookies.token
 
     if (token) {
         jwt.verify(token, 'your_jwt_secret', (err, user) => {
@@ -100,8 +105,14 @@ const authenticateJWT = (req, res, next) => {
         res.sendStatus(401);
     }
 }
+
 travelApp.get('/protected', authenticateJWT, (req, res) => {
     res.status(200).json({ message: "This is a proctected route", user: req.user })
+})
+
+travelApp.post('/logout', (req,res)=>{
+    res.clearCookie('token');
+    res.status(200).json({message:'Logout Successful'})
 })
 
 travelApp.listen(port, () => {
